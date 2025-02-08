@@ -8,43 +8,37 @@ import './css/App.css'
 import AccessGate from './components/AccessGate.jsx'
 
 function formatTime(ms){
+    const pad = (num, size) => String(num).padStart(size, '0');
+
     const totalSeconds = Math.floor(ms / 1000);
     const seconds = totalSeconds % 60;
     const minutes = Math.floor(totalSeconds / 60) % 60;
     const hours = Math.floor(totalSeconds / 3600) % 24;
     const days = Math.floor(totalSeconds / 86400);
-    return `${days}:${hours}:${minutes}:${seconds}`;
+    return `${pad(days, 2)}:${pad(hours, 2)}:${pad(minutes, 2)}:${pad(seconds, 2)}`;
 }
 
 function App() {
-    const [access, setAccess] = useState(false)
+    const [access, setAccess] = useState(true)
 
     const [assignments, setAssignments] = useState([])
 
     useEffect(() => {
-        const initialAssignments = [
-            {
-                id: 1,
-                title: "LTM MPKT",
-                start: 'Feb 3, 2025 15:30:00',
-                deadline: 'Feb 9, 2025 23:59:00'
-            },
-            {
-                id: 2,
-                title: "Worksheet MatDis 2",
-                start: 'Feb 7, 2025 18:00:00',
-                deadline: 'Feb 12, 2025 23:59:00'
-            }
-        ]
-        setAssignments(initialAssignments)
+        fetch('/assignments.json')
+            .then((response) => response.json())
+            .then((data) => setAssignments(data))
+            .catch((error) => console.error("Error fetching assignments:", error));
 
         const intervalId = setInterval(() => {
             setAssignments(prev => prev.map((assignment) => {
                 const now = new Date();
                 const deadline = new Date(assignment.deadline);
+                const start = new Date(assignment.start)
+                const duration = deadline - start
                 const timeRemaining = deadline - now;
                 return {
                     ...assignment,
+                    duration: duration > 0 ? duration : 0,
                     remaining: timeRemaining > 0 ? timeRemaining : 0
                 };
             }));
@@ -62,7 +56,7 @@ function App() {
                     </div>
                     <div id="assignmentsList">
                         {assignments.map((assignment) => (
-                            <div key={assignment.id}>
+                            <div className='assignment' key={assignment.id}>
                                 <div className="title">{assignment.title}</div>
                                 {/* <div className="progressContainer">
                                     <div className="progressBar">
@@ -70,7 +64,24 @@ function App() {
                                     </div>
                                     <div className="progressLabel"></div>
                                 </div> */}
-                                <div id="countdown">
+                                <div className="due">due date: {assignment.deadline}</div>
+                                <div 
+                                    className="countdown"
+                                    style={{
+                                        color: (()=>{
+                                            const timeRatio = assignment.remaining/assignment.duration
+                                            if(assignment.remaining < 24*60*60*1000 || timeRatio < 0.3){
+                                                return "#B03A2E"
+                                            }else if(timeRatio < 0.6){
+                                                return "#D4AF37"
+                                            }else if(timeRatio >= 0.6){
+                                                return "#478A50"
+                                            }else{
+                                                return "#F4F4F4"
+                                            }
+                                        })()
+                                    }}
+                                >
                                     {assignment.remaining !== undefined ?
                                         formatTime(assignment.remaining)
                                     :
