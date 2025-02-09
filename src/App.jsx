@@ -72,9 +72,9 @@ function App() {
                                             const timeRatio = assignment.remaining/assignment.duration
                                             if(assignment.remaining < 24*60*60*1000 || timeRatio < 0.3){
                                                 return "#B03A2E"
-                                            }else if(timeRatio < 0.6){
+                                            }else if(timeRatio < 0.5){
                                                 return "#D4AF37"
-                                            }else if(timeRatio >= 0.6){
+                                            }else if(timeRatio >= 0.5){
                                                 return "#478A50"
                                             }else{
                                                 return "#F4F4F4"
