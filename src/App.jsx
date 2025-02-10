@@ -20,7 +20,6 @@ function formatTime(ms){
 
 function App() {
     const [access, setAccess] = useState(true)
-
     const [assignments, setAssignments] = useState([])
 
     useEffect(() => {
@@ -58,19 +57,19 @@ function App() {
                         {assignments.map((assignment) => (
                             <div className='assignment' key={assignment.id}>
                                 <div className="title">{assignment.title}</div>
-                                {/* <div className="progressContainer">
+                                <div className="progressContainer">
                                     <div className="progressBar">
                                         <div className="progressNow" style={{width: `${assignment[3]}%`}}></div>
                                     </div>
                                     <div className="progressLabel"></div>
-                                </div> */}
+                                </div>
                                 <div className="due">due date: {assignment.deadline}</div>
                                 <div 
                                     className="countdown"
                                     style={{
                                         color: (()=>{
                                             const timeRatio = assignment.remaining/assignment.duration
-                                            if(assignment.remaining < 24*60*60*1000 || timeRatio < 0.3){
+                                            if(assignment.remaining < 24*60*60*1000 || timeRatio < 0.25){
                                                 return "#B03A2E"
                                             }else if(timeRatio < 0.5){
                                                 return "#D4AF37"
@@ -87,6 +86,18 @@ function App() {
                                     :
                                         "Calculating..."
                                     }
+                                </div>
+                                <div className="options">
+                                    <div className="markAsDone buttons">
+                                        <h1>mark<br />as<br />done</h1>
+                                        <div className="bg1"></div>
+                                        <div className="bg2"></div>
+                                    </div>
+                                    <div className="details buttons">
+                                        <h1>details</h1>
+                                        <div className="bg1"></div>
+                                        <div className="bg2"></div>
+                                    </div>
                                 </div>
                             </div>
                         ))}

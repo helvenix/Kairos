@@ -32,18 +32,23 @@
 }
 
 #assignmentsList {
-    width: 36vh; height: 100%;
+    width: 48vh; height: 100%;
     position: absolute; top: 0; right: 0;
     overflow-y: auto; overflow-x: hidden; 
-    user-select: none;
+    user-select: none; 
 }
 
 .assignment {
     width: 100%; height: 12vh;
     border-left: 3px dashed #f4f4f4;
-    margin-top: 12px;
-    color: #f4f4f4;
-    position: relative;
+    margin-top: 12px; overflow: hidden;
+    color: #f4f4f4; 
+    position: relative; left: 12vh;
+    transition: .4s ease-in-out;
+}
+
+.assignment:hover {
+    left: 0;
 }
 
 .assignment .title{
@@ -59,4 +64,70 @@
 .assignment .countdown {
     font-size: 6vh; font-family: 'Digital';
     position: absolute; bottom: 1vh; left: 1vh;
+}
+
+.assignment .options {
+    width: 12vh; height: 100%;
+    background-color: #f4f4f4;
+    position: absolute; right: 0;
+    color: #242424; text-align: center;
+    font-family: 'Poppins';
+    font-size: 12px;
+}
+
+.assignment .options .buttons {
+    width: 6vh; height: 100%; cursor: pointer;
+    display: flex; justify-content: center; align-items: center;
+    transition: .2s ease-in-out; position: absolute;
+    background-color: #f4f4f4; border: 2px solid #f4f4f4; box-sizing: border-box;
+}
+
+.assignment .options .buttons h1{
+    z-index: 1;
+}
+
+.assignment .options .markAsDone {
+    left: 0;
+}
+
+.assignment .options .details {
+    right: 0;
+}
+
+.assignment .options .buttons .bg1 {
+    background-color: #242424; position: absolute; top: 50%; left: 0;
+    width: 100%; height: 0; transition: .15s ease-in-out .15s;
+}
+
+.assignment .options .buttons .bg2 {
+    background-color: #4F81BD; position: absolute; top: 50%; left: 0;
+    width: 100%; height: 0; transition: .15s ease;
+}
+
+.assignment .options .buttons:hover{
+    transition-duration: .3s;
+    color: #f4f4f4; border-color: #4F81BD;
+}
+
+.assignment .options .buttons:hover .bg1 {
+    height: 100%; top: 0;
+    transition: .3s 0s;
+}
+
+.assignment .options .buttons:hover .bg2{
+    height: 100%;
+    top: 0;
+    transition: .3s .3s;
+}
+
+.assignment .options .buttons:active{
+    transition: 0s 0s; color: #4F81BD;
+    border-color: #f4f4f4;
+}
+.assignment .options .buttons:active .bg2{
+    transition: 0s 0s;
+}
+.assignment .options .buttons:active .bg2{
+    transition: 0s 0s;
+    background-color: #f4f4f4;
 }
