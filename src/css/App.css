@@ -1,0 +1,62 @@
+@font-face {
+    font-family: "Quicksand";
+    src: url(../assets/font/Quicksand_Book.otf);
+}
+@font-face {
+    font-family: "Quicksand Bold";
+    src: url(../assets/font/Quicksand_Bold.otf);
+}
+@font-face {
+    font-family: "Poppins";
+    src: url(../assets/font/Poppins-Regular.ttf);
+}
+@font-face {
+    font-family: 'Digital';
+    src: url(../assets/font/DS-DIGIB.TTF);
+}
+
+#container{
+    width: 100%; height: 100%; overflow: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 6px; 
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+  
+::-webkit-scrollbar-thumb {
+    background: #f4f4f4;
+}
+
+#assignmentsList {
+    width: 36vh; height: 100%;
+    position: absolute; top: 0; right: 0;
+    overflow-y: auto; overflow-x: hidden; 
+    user-select: none;
+}
+
+.assignment {
+    width: 100%; height: 12vh;
+    border-left: 3px dashed #f4f4f4;
+    margin-top: 12px;
+    color: #f4f4f4;
+    position: relative;
+}
+
+.assignment .title{
+    font-size: 2vh; font-family: 'Quicksand Bold';
+    position: absolute; top: 2vh; left: 1vh;
+}
+
+.assignment .due{
+    font-size: 1vh; font-family: 'Poppins';
+    position: absolute; top: 4vh; left: 1vh;
+}
+
+.assignment .countdown {
+    font-size: 6vh; font-family: 'Digital';
+    position: absolute; bottom: 1vh; left: 1vh;
+}

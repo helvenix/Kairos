@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# Access Key
+.env
+
+#data
+assignments.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
