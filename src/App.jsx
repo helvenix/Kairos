@@ -54,7 +54,10 @@ function App() {
 
                     </div>
                     <div id="assignmentsList">
-                        {assignments.map((assignment) => (
+                        {assignments
+                            .slice()
+                            .sort((a,b) => a.remaining - b.remaining)
+                            .map((assignment) => (
                             <div className='assignment' key={assignment.id}>
                                 <div className="title">{assignment.title}</div>
                                 <div className="progressContainer">
