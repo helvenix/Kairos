@@ -46,6 +46,12 @@ function App() {
         return () => clearInterval(intervalId)
     }, [])
 
+    function markAsDone(Id){
+        setAssignments(prev => prev.map(assignment => {
+            assignment.id === Id ? {...assignment, completed: true} : assignment
+        }))
+    }
+
     return (
         access ?
             (
@@ -84,14 +90,13 @@ function App() {
                                         })()
                                     }}
                                 >
-                                    {assignment.remaining !== undefined ?
-                                        formatTime(assignment.remaining)
-                                    :
-                                        "Calculating..."
-                                    }
+                                    {assignment.remaining !== undefined ? formatTime(assignment.remaining):"Calculating..."}
                                 </div>
                                 <div className="options">
-                                    <div className="markAsDone buttons">
+                                    <div 
+                                        className="markAsDone buttons"
+                                        onClick= {() => markAsDone(assignment.id)}
+                                    >
                                         <h1>mark<br />as<br />done</h1>
                                         <div className="bg1"></div>
                                         <div className="bg2"></div>
