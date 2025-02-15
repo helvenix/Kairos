@@ -131,3 +131,98 @@
     transition: 0s 0s;
     background-color: #f4f4f4;
 }
+
+#outScreen {
+    width: 100%; height: 100%;
+    position: fixed; left: 0; top: 0;
+    z-index: 1; background-color: #f4f4f4; opacity: 0.3; 
+}
+
+#inScreen {
+    width: 72vh; height: 100%; 
+    background-color: #242424;
+    position: fixed; top: 0; left: calc(50% - (72vh/2));
+    z-index: 2;
+}
+
+#holdButton {
+    height: 12vh; width: 12vh;
+    background-color: transparent; 
+    border-radius: 50%; cursor: pointer;
+    position: absolute; user-select: none;
+    top: 50%; left: 50%;
+    translate: -50% -50%;
+    color: #f4f4f4; font-size: 12px; font-family: 'Poppins';
+    display: flex; align-items: center; justify-content: center;
+    border: 6px solid #f4f4f4;
+    transition: .15s ease-in-out; overflow: visible;
+    box-shadow: 0 0 12px 3px rgba(244, 244, 244, 0.2);
+    --progress: 0deg;
+}
+ 
+#holdButton .bg1 {
+    background-color: #f4f4f4;
+    height: 0; width: 0;
+    position: absolute; border-radius: 50%;
+    transition: .3s ease-in-out;
+}
+
+#holdButton .bg2 {
+    
+    position: absolute;
+    top: 50%; left: 50%;
+    translate: -50% -50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg,
+        #478A50 0deg,
+        #478A50 45deg,
+        #D4AF37 90deg,
+        #D4AF37 135deg,
+        #D4AF37 180deg,
+        #B03A2E 225deg,
+        #B03A2E 270deg,
+        #B03A2E 315deg,
+        #478A50 360deg
+    );
+    z-index: -1;
+    transition: background 0.15s ease-in-out;
+    -webkit-mask: conic-gradient(
+        black 0deg,
+        black var(--progress),
+        transparent var(--progress),
+        transparent 360deg
+    );
+    mask: conic-gradient(
+        black 0deg,
+        black var(--progress),
+        transparent var(--progress),
+        transparent 360deg
+    );
+    transition: -webkit-mask 0.1s linear, mask 0.1s linear;
+}
+
+#holdButton h1 {
+    z-index: 2;
+}
+
+#holdButton:hover {
+    height: 18vh; width: 18vh; color: #242424;
+    border-width: 12px;
+}
+
+#holdButton:hover .bg1 {
+    height: calc(100% + 3px); width: calc(100% + 3px);
+}
+
+#holdButton:hover .bg2 {
+    height: calc(18vh + 24px); width: calc(18vh + 24px);
+}
+
+@keyframes screenOpen{
+    0% {
+
+    }
+}

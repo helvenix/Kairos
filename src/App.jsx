@@ -21,6 +21,8 @@ function formatTime(ms){
 function App() {
     const [access, setAccess] = useState(true)
     const [assignments, setAssignments] = useState([])
+    const [displayScreen, setDisplayScreen] = useState(true)
+    const [screenInfo, setScreenInfo] = useState()
 
     useEffect(() => {
         fetch('/assignments.json')
@@ -59,6 +61,40 @@ function App() {
                     <div id="threshold">
 
                     </div>
+                    {displayScreen ? 
+                        (
+                            <>
+                                <div id="outScreen"></div>
+                                <div id="inScreen">
+                                    <div 
+                                        id="holdButton"
+                                        onMouseDown={(e) => {
+                                            const button = e.currentTarget;
+                                            let startTime = Date.now();
+                                            let holdTime = 5000
+                                            const interval = setInterval(() => {
+                                                let elapsed = Date.now() - startTime;
+                                                let progressDegrees = Math.min((elapsed / holdTime) * 360, 360);
+                                                button.style.setProperty('--progress', `${progressDegrees}deg`);
+                                                if (progressDegrees === 360) {
+                                                    clearInterval(interval);
+                                                }
+                                            }, 10);
+
+                                            button.addEventListener('mouseup', () => {
+                                                clearInterval(interval);
+                                                button.style.setProperty('--progress', `0deg`);
+                                            }, { once: true });
+                                        }}
+                                    >
+                                        <h1>Completed</h1>
+                                        <div className="bg1"></div>
+                                        <div className="bg2"></div>
+                                    </div>
+                                </div>
+                            </>
+                        ) : null
+                    }
                     <div id="assignmentsList">
                         {assignments
                             .slice()
@@ -95,7 +131,10 @@ function App() {
                                 <div className="options">
                                     <div 
                                         className="markAsDone buttons"
-                                        onClick= {() => markAsDone(assignment.id)}
+                                        onClick= {() => {
+                                            setDisplayScreen(true)
+
+                                        }}
                                     >
                                         <h1>mark<br />as<br />done</h1>
                                         <div className="bg1"></div>
