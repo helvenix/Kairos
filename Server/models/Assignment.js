@@ -11,8 +11,6 @@ const AssignmentSchema = new mongoose.Schema({
     course: { type: String, default: '' },
     attachments: { type: [String], default: [] },
     submission: { type: String, default: '' },
-    timeRatio: { type: Number, default: 0 },
-    priority: { type: String, default: '' },
     completed: { type: Boolean, default: false },
     createdAt: { type: Date, default: Date.now },
     completionDate: { type: Date }
