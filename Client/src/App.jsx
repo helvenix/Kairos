@@ -25,10 +25,12 @@ function App() {
     const [screenInfo, setScreenInfo] = useState()
 
     useEffect(() => {
-        fetch('/assignments.json')
+        fetch(import.meta.env.VITE_API_URL)
             .then((response) => response.json())
-            .then((data) => setAssignments(data))
-            .catch((error) => console.error("Error fetching assignments:", error));
+            .then((data) => {
+                setAssignments(data)
+            })
+            .catch((error) => console.error("Error fetching data:", error));
 
         const intervalId = setInterval(() => {
             setAssignments(prev => prev.map((assignment) => {
@@ -49,7 +51,27 @@ function App() {
     }, [])
 
     function markAsDone(Id){
-        setAssignments(prev => prev.map(assignment => assignment.id === Id ? {...assignment, completed: true} : assignment))
+        const updatedData = {
+            completed: true,
+            completionDate: new Date().toISOString()
+        };
+
+        fetch(`${import.meta.env.VITE_API_URL}${Id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedData)
+        })
+        .then(response => response.json())
+        .then(updatedAssignment => {
+            setAssignments(prev => 
+                prev.map(assignment => 
+                    assignment.id === updatedAssignment.id ? updatedAssignment : assignment
+                )
+            );
+        })
+        .catch(err => console.log("Error updating data: ", err))
         setTimeout(() => setDisplayScreen(false), 300)
     }
 
@@ -110,7 +132,7 @@ function App() {
                                 <div className="title">{assignment.title}</div>
                                 <div className="progressContainer">
                                     <div className="progressBar">
-                                        <div className="progressNow" style={{width: `${assignment[3]}%`}}></div>
+                                        {/* <div className="progressNow" style={{width: `${assignment[3]}%`}}></div> */}
                                     </div>
                                     <div className="progressLabel"></div>
                                 </div>
