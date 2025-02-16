@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
     try {
         const newAssignment = new Assignment(req.body);
         const savedAssignment = await newAssignment.save();
-        res.status(201).jason(savedAssignment);
+        res.status(201).json(savedAssignment);
     } catch (err) {
         res.status(400).json({error: err.message});
     }
