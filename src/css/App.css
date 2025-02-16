@@ -208,18 +208,24 @@
     z-index: 2;
 }
 
-#holdButton:hover {
+#holdButton:hover{
     height: 18vh; width: 18vh; color: #242424;
     border-width: 12px;
 }
 
-#holdButton:hover .bg1 {
-    height: calc(100% + 3px); width: calc(100% + 3px);
+#holdButton.hovered{
+    height: calc(18vh + 22px); width: calc(18vh + 22px); color: #242424;
+    border-width: 14px;
 }
 
-#holdButton:hover .bg2 {
+#holdButton:hover .bg1, #holdButton.hovered .bg1{
+    height: calc(18vh + 3px); width: calc(18vh + 3px);
+}
+
+#holdButton:hover .bg2, #holdButton.hovered .bg2{
     height: calc(18vh + 24px); width: calc(18vh + 24px);
 }
+
 
 @keyframes screenOpen{
     0% {

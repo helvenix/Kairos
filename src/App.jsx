@@ -72,19 +72,25 @@ function App() {
                                             const button = e.currentTarget;
                                             let startTime = Date.now();
                                             let holdTime = 5000
+                                            button.classList.add('hovered');
                                             const interval = setInterval(() => {
                                                 let elapsed = Date.now() - startTime;
                                                 let progressDegrees = Math.min((elapsed / holdTime) * 360, 360);
                                                 button.style.setProperty('--progress', `${progressDegrees}deg`);
                                                 if (progressDegrees === 360) {
                                                     clearInterval(interval);
+                                                    markAsDone(screenInfo)
                                                 }
                                             }, 10);
 
-                                            button.addEventListener('mouseup', () => {
+                                            const clearHold = () => {
                                                 clearInterval(interval);
-                                                button.style.setProperty('--progress', `0deg`);
-                                            }, { once: true });
+                                                button.style.setProperty('--progress', '0deg');
+                                                button.classList.remove('hovered');
+                                                document.removeEventListener('mouseup', clearHold);
+                                            };  
+                                          
+                                                document.addEventListener('mouseup', clearHold, { once: true });
                                         }}
                                     >
                                         <h1>Completed</h1>
@@ -132,8 +138,8 @@ function App() {
                                     <div 
                                         className="markAsDone buttons"
                                         onClick= {() => {
+                                            setScreenInfo(assignments.id)
                                             setDisplayScreen(true)
-
                                         }}
                                     >
                                         <h1>mark<br />as<br />done</h1>
