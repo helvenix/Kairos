@@ -12,10 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 const MONGO_URI = 'mongodb://localhost:27017/kairos_db';
-mongoose.connect(MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+mongoose.connect(MONGO_URI)
 .then(() => console.log('Connected to MongoDB'))
 .catch((err) => console.error('MongoDB connection error: ', err));
 
