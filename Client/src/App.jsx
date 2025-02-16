@@ -21,7 +21,7 @@ function formatTime(ms){
 function App() {
     const [access, setAccess] = useState(true)
     const [assignments, setAssignments] = useState([])
-    const [displayScreen, setDisplayScreen] = useState(true)
+    const [displayScreen, setDisplayScreen] = useState(false)
     const [screenInfo, setScreenInfo] = useState()
 
     useEffect(() => {
@@ -49,9 +49,8 @@ function App() {
     }, [])
 
     function markAsDone(Id){
-        setAssignments(prev => prev.map(assignment => {
-            assignment.id === Id ? {...assignment, completed: true} : assignment
-        }))
+        setAssignments(prev => prev.map(assignment => assignment.id === Id ? {...assignment, completed: true} : assignment))
+        setTimeout(() => setDisplayScreen(false), 300)
     }
 
     return (
@@ -71,7 +70,7 @@ function App() {
                                         onMouseDown={(e) => {
                                             const button = e.currentTarget;
                                             let startTime = Date.now();
-                                            let holdTime = 5000
+                                            let holdTime = 4000
                                             button.classList.add('hovered');
                                             const interval = setInterval(() => {
                                                 let elapsed = Date.now() - startTime;
@@ -104,6 +103,7 @@ function App() {
                     <div id="assignmentsList">
                         {assignments
                             .slice()
+                            .filter(assignment => !assignment.completed)
                             .sort((a,b) => a.remaining - b.remaining)
                             .map((assignment) => (
                             <div className='assignment' key={assignment.id}>
@@ -138,7 +138,7 @@ function App() {
                                     <div 
                                         className="markAsDone buttons"
                                         onClick= {() => {
-                                            setScreenInfo(assignments.id)
+                                            setScreenInfo(assignment.id)
                                             setDisplayScreen(true)
                                         }}
                                     >

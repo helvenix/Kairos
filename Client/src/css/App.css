@@ -157,6 +157,7 @@
     border: 6px solid #f4f4f4;
     transition: .15s ease-in-out; overflow: visible;
     box-shadow: 0 0 12px 3px rgba(244, 244, 244, 0.2);
+    overflow: hidden;
     --progress: 0deg;
 }
  
