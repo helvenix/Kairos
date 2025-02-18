@@ -6,6 +6,7 @@ import './css/App.css'
 
 // Components
 import AccessGate from './components/AccessGate.jsx'
+import DateTimeInput from './components/DateTimeInput'
 
 function formatTime(ms){
     const pad = (num, size) => String(num).padStart(size, '0');
@@ -23,6 +24,7 @@ function App() {
     const [assignments, setAssignments] = useState([])
     const [displayScreen, setDisplayScreen] = useState(false)
     const [screenInfo, setScreenInfo] = useState()
+    // const [startDate, setStartDate] = useState(new Date());
 
     useEffect(() => {
         fetch(import.meta.env.VITE_API_URL)
@@ -79,9 +81,6 @@ function App() {
         access ?
             (
                 <div id="container">
-                    <div id="threshold">
-
-                    </div>
                     {displayScreen ? 
                         (
                             <>
@@ -122,6 +121,12 @@ function App() {
                             </>
                         ) : null
                     }
+                    <div id="main">
+                        <div id="assignmentInput">
+                            
+                            <label htmlFor="title"></label>
+                        </div>
+                    </div>
                     <div id="assignmentsList">
                         {assignments
                             .slice()
