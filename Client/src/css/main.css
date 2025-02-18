@@ -1,14 +1,5 @@
-@import "tailwindcss";
-@tailwind utilities;
-
 html, body, #root {
     height: 100%; width: 100%;
     background-color: #242424;
     overflow: hidden;
-}
-
-@layer base {
-  :root {
-        --radius: 0.5rem;
-    }
 }
