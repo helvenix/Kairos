@@ -24,6 +24,11 @@ function App() {
     const [displayScreen, setDisplayScreen] = useState(false)
     const [screenInfo, setScreenInfo] = useState()
 
+    const [title, setTitle] = useState(null);
+    const [startDate, setStartDate] = useState(null);
+    const [deadlineDate, setDeadlineDate] = useState(null);
+    const [description, setDescription] = useState(null)
+
     useEffect(() => {
         fetch(import.meta.env.VITE_API_URL)
             .then((response) => response.json())
@@ -79,9 +84,6 @@ function App() {
         access ?
             (
                 <div id="container">
-                    <div id="threshold">
-
-                    </div>
                     {displayScreen ? 
                         (
                             <>
@@ -122,6 +124,32 @@ function App() {
                             </>
                         ) : null
                     }
+                    <div id="threshold">
+                        <div id="assignmentInput">
+                            <input type="text" id="titleInput" value={title} autoComplete='off' onChange={e => {setTitle(e.target.value); e.target.value ? e.target.classList.add('notEmpty'): e.target.classList.remove('notEmpty')}}/>
+                            <label htmlFor="titleInput">Title <span>*</span></label>
+                            <input type="date" id="startDateInput" value={startDate} autoComplete='off' onChange={e => setStartDate(e.target.value)}/>
+                            <label htmlFor="startDateInput">Start Date <span>*</span></label>
+                            <input type="date" id="deadlineDateInput" value={deadlineDate} autoComplete='off' onChange={e => setDeadlineDate(e.target.value)}/>
+                            <label htmlFor="deadlineDateInput">Deadline <span>*</span></label>
+                            <input type="text" id="descriptionInput" value={description} autoComplete='off' onChange={e => setDescription(e.target.value)}/>
+                            <label htmlFor="descriptionInput">Description</label>
+                            {/* <input type="text" id="notesInput" />
+                            <label htmlFor="notesInput">Notes</label>
+                            <input type="text" id="courseInput" />
+                            <label htmlFor="courseInput">Course</label>
+                            <input type="text" id="tagsInput" />
+                            <label htmlFor="tagsInput">Tags</label>
+                            <input type="text" id="attachmentsInput" />
+                            <label htmlFor="attachmentsInput">Attachment Link</label>
+                            <input type="text" id="submissionInput" />
+                            <label htmlFor="submissionInput">Submission Link</label> */}\
+                            <div 
+                                id="submitButton"
+                                onClick={() => console.log(title, startDate, deadlineDate, description)}
+                            >Submit</div>
+                        </div>
+                    </div>
                     <div id="assignmentsList">
                         {assignments
                             .slice()

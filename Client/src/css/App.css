@@ -169,7 +169,6 @@
 }
 
 #holdButton .bg2 {
-    
     position: absolute;
     top: 50%; left: 50%;
     translate: -50% -50%;
@@ -232,4 +231,82 @@
     0% {
 
     }
+}
+
+#assignmentInput {
+    position: absolute;
+    top: 10vh; left: 10vh;
+    width: calc(100% - 68vh); height: 80vh;
+}
+
+#titleInput {
+    width: 80%; box-sizing: border-box;
+    position: absolute; top: 5vh; font-size: 12px;
+    height: 4vh; background-color: transparent;
+    box-sizing: border-box; border: none; border-bottom: 2px dotted #f4f4f4;
+    padding-left: 10px; padding-right: 10px; color: #f4f4f4;
+}
+
+#titleInput + label {
+    color: #f4f4f4; font-family: 'Poppins';
+    position: absolute; top: 6.3vh; left: 1vh; font-size: 12px;
+    transition: .2s ease-in;
+}
+
+label span {
+    color: #B03A2E;
+}
+
+#titleInput:focus {
+    outline: none; border-bottom-style: solid;
+}
+
+#titleInput:focus + label, #titleInput.notEmpty + label {
+    top: 4vh;
+}
+
+#startDateInput, #deadlineDateInput{
+    width: 12vh; height: 3vh;
+    position: absolute; top: 15vh;
+}
+
+#startDateInput + label, #deadlineDateInput + label {
+    position: absolute; top: 12vh; color: #f4f4f4;
+    font-family: 'Poppins'; font-size: 12px;
+}
+
+#deadlineDateInput, #deadlineDateInput + label {
+    left: 40%;
+}
+
+#descriptionInput {
+    width: 80%; box-sizing: border-box;
+    position: absolute; top: 24vh; font-size: 12px; left: 0;
+    height: 4vh; background-color: transparent;
+    box-sizing: border-box; border: none; border-bottom: 2px dotted #f4f4f4;
+    padding-left: 10px; padding-right: 10px; color: #f4f4f4;
+}
+
+#descriptionInput + label {
+    color: #f4f4f4; font-family: 'Poppins';
+    position: absolute; top: 25.3vh; left: 1vh; font-size: 12px;
+    transition: .2s ease-in;
+}
+
+#descriptionInput + label span {
+    color: #B03A2E;
+}
+
+#descriptionInput:focus {
+    outline: none; border-bottom-style: solid;
+}
+
+#descriptionInput:focus + label, #descriptionInput.notEmpty + label {
+    top: 23vh;
+}
+
+#submitButton {
+    width: 20vh; height: 4vh; cursor: pointer; color: #242424; background-color: #f4f4f4;
+    position: absolute; display: flex; align-items: center; justify-content: center;
+    top: 36vh; left: calc(40% - 10vh); font-family: 'Poppins'; font-size: 12px;
 }
