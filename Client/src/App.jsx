@@ -147,7 +147,11 @@ function App() {
                             <div 
                                 id="submitButton"
                                 onClick={() => console.log(title, new Date(startDate), new Date(deadlineDate), description)}
-                            >Submit</div>
+                            >
+                                <h1>Submit</h1>
+                                <div className="bg1"></div>
+                                <div className="bg2"></div>
+                            </div>
                         </div>
                     </div>
                     <div id="assignmentsList">

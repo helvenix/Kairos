@@ -305,8 +305,58 @@ label span {
     top: 23vh;
 }
 
-#submitButton {
-    width: 20vh; height: 4vh; cursor: pointer; color: #242424; background-color: #f4f4f4;
-    position: absolute; display: flex; align-items: center; justify-content: center;
-    top: 36vh; left: calc(40% - 10vh); font-family: 'Poppins'; font-size: 12px;
+#submitButton { 
+    display: flex; justify-content: center; align-items: center;
+    position: absolute; font-size: 1.4vh; user-select: none;
+    color: #F4F4F4; left: calc(40% - 6vh); cursor: pointer; 
+    height: 3.6vh; width: 12vh; border: 2px solid #F4F4F4; box-sizing: border-box;
+    background-color: transparent; top: 36vh;
+    transition: .2s ease-in-out; 
+}
+
+#submitButton h1{
+    font-family: 'Poppins';
+    font-weight: 600;
+    transition: .1s ease;
+    position: relative; z-index: 1;
+}
+
+#submitButton .bg1{
+    background-color: #4F81BD; position: absolute; top: 0; left: 50%;
+    width: 0; height: 100%; transition: .15s ease-in-out .15s;
+}
+
+#submitButton .bg2 {
+    background-color: #F4F4F4; position: absolute; top: 0; left: 50%;
+    width: 0; height: 100%; transition: .15s ease;
+}
+
+#submitButton:hover {
+    margin-bottom: -0.4vh;
+    height: 4vh; width: 80%; top: 35.8vh; left: 0;
+    transition-duration: .3s;
+}
+
+#submitButton:hover h1 {
+    color: #4F81BD;
+}
+
+#submitButton:hover .bg1{
+    width: 100%;
+    left: 0;
+    transition: .3s 0s;
+}
+#submitButton:hover .bg2{
+    width: 100%;
+    left: 0;
+    transition: .3s .3s;
+}
+
+#submitButton:active{
+    transition: 0s 0s;
+    border-color: #4F81BD;
+}
+#submitButton:active .bg2{
+    transition: 0s 0s;
+    background-color: #4F81BD;
 }
