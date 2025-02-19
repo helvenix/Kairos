@@ -24,10 +24,10 @@ function App() {
     const [displayScreen, setDisplayScreen] = useState(false)
     const [screenInfo, setScreenInfo] = useState()
 
-    const [title, setTitle] = useState(null);
-    const [startDate, setStartDate] = useState(null);
-    const [deadlineDate, setDeadlineDate] = useState(null);
-    const [description, setDescription] = useState(null);
+    const [title, setTitle] = useState("");
+    const [startDate, setStartDate] = useState("");
+    const [deadlineDate, setDeadlineDate] = useState("");
+    const [description, setDescription] = useState("");
 
     useEffect(() => {
         fetch(import.meta.env.VITE_API_URL)
@@ -180,9 +180,9 @@ function App() {
                                 onClick={() => {
                                     if(title && startDate && deadlineDate){
                                         submitAssignment(title, startDate, deadlineDate, description)
-                                        setTitle(null)
-                                        setStartDate(null)
-                                        setDeadlineDate(null)
+                                        setTitle("")
+                                        setStartDate("")
+                                        setDeadlineDate("")
                                     } else{
                                         setTimeout(()=> alert("Filled Required Data!"), 300)
                                     }                   
