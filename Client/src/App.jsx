@@ -97,6 +97,8 @@ function App() {
                 body: JSON.stringify(newAssignment)
             })
             if (res.ok) {
+                const newAssignment = await res.json();
+                setAssignments(prev => [...prev, newAssignment]);
                 setTimeout(() => alert("Assignment added successfully!"), 300)
                 setTitle(null);
                 setStartDate(null);
