@@ -1,3 +1,12 @@
+@font-face {
+    font-family: "Quicksand Bold";
+    src: url(../assets/font/Quicksand_Bold.otf);
+}
+@font-face {
+    font-family: "Poppins";
+    src: url(../assets/font/Poppins-Regular.ttf);
+}
+
 #accessGate {
     width: 72vh; height: 24vh;
     position: absolute;
@@ -7,7 +16,7 @@
 
 #accessGate>h1 {
     font-size: 3vh;
-    font-family: 'Lora';
+    font-family: 'Quicksand Bold';
     color: #F4F4F4;
     line-height: 6vh;
     text-align: center;
@@ -66,7 +75,7 @@
 }
 
 #accessGate>#accessSubmit h1{
-    font-family: 'Versanity';
+    font-family: 'Poppins';
     font-weight: 600;
     transition: .1s ease;
     position: relative; z-index: 1;
@@ -89,7 +98,7 @@
 }
 
 #accessGate>#accessSubmit:hover h1 {
-    color: #F4F4F4;
+    color: #4F81BD;
 }
 
 #accessGate>#accessSubmit:hover .bg1{
