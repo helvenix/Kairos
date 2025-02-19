@@ -80,6 +80,10 @@ function App() {
         setTimeout(() => setDisplayScreen(false), 300)
     }
 
+    function submitAssignment(title, start, deadline, description){
+        
+    }
+
     return (
         access ?
             (
@@ -128,10 +132,13 @@ function App() {
                         <div id="assignmentInput">
                             <input type="text" id="titleInput" value={title} autoComplete='off' onChange={e => {setTitle(e.target.value); e.target.value ? e.target.classList.add('notEmpty'): e.target.classList.remove('notEmpty')}}/>
                             <label htmlFor="titleInput">Title <span>*</span></label>
+                            <p className="warning" style={{top: "10vh"}}>{title ? "" : `Required`}</p>
                             <input type="datetime-local" id="startDateInput" value={startDate} autoComplete='off' onChange={e => setStartDate(e.target.value)}/>
                             <label htmlFor="startDateInput">Start Date <span>*</span></label>
+                            <p className="warning" style={{top: "20.4vh"}}>{startDate ? "" : `Required`}</p>
                             <input type="datetime-local" id="deadlineDateInput" value={deadlineDate} autoComplete='off' onChange={e => setDeadlineDate(e.target.value)}/>
                             <label htmlFor="deadlineDateInput">Deadline <span>*</span></label>
+                            <p className="warning" style={{top: "20.4vh", left: "calc(40% + 1vh)"}}>{deadlineDate ? "" : `Required`}</p>
                             <input type="text" id="descriptionInput" value={description} autoComplete='off' onChange={e => setDescription(e.target.value)}/>
                             <label htmlFor="descriptionInput">Description</label>
                             {/* <input type="text" id="notesInput" />
@@ -143,10 +150,19 @@ function App() {
                             <input type="text" id="attachmentsInput" />
                             <label htmlFor="attachmentsInput">Attachment Link</label>
                             <input type="text" id="submissionInput" />
-                            <label htmlFor="submissionInput">Submission Link</label> */}\
+                            <label htmlFor="submissionInput">Submission Link</label> */}
                             <div 
                                 id="submitButton"
-                                onClick={() => console.log(title, new Date(startDate), new Date(deadlineDate), description)}
+                                onClick={() => {
+                                    if(title && startDate && deadlineDate){
+                                        submitAssignment(title, startDate, deadlineDate, description)
+                                        setTitle(null)
+                                        setStartDate(null)
+                                        setDeadlineDate(null)
+                                    } else{
+                                        alert("Filled Required Data!");
+                                    }                   
+                                }}
                             >
                                 <h1>Submit</h1>
                                 <div className="bg1"></div>

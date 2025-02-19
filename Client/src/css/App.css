@@ -267,16 +267,22 @@ label span {
 
 #startDateInput, #deadlineDateInput{
     width: 18vh; height: 3vh;
-    position: absolute; top: 15vh;
+    position: absolute; top: 16vh;
 }
 
 #startDateInput + label, #deadlineDateInput + label {
-    position: absolute; top: 12vh; color: #f4f4f4;
+    position: absolute; top: 14vh; color: #f4f4f4;
     font-family: 'Poppins'; font-size: 12px;
 }
 
 #deadlineDateInput, #deadlineDateInput + label {
     left: 40%;
+}
+
+.warning {
+    position: absolute;
+    color: #B03A2E; left: 1vh;
+    font-size: 12px;
 }
 
 #descriptionInput {
