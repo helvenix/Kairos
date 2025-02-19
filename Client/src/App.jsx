@@ -27,7 +27,7 @@ function App() {
     const [title, setTitle] = useState(null);
     const [startDate, setStartDate] = useState(null);
     const [deadlineDate, setDeadlineDate] = useState(null);
-    const [description, setDescription] = useState(null)
+    const [description, setDescription] = useState(null);
 
     useEffect(() => {
         fetch(import.meta.env.VITE_API_URL)
@@ -128,9 +128,9 @@ function App() {
                         <div id="assignmentInput">
                             <input type="text" id="titleInput" value={title} autoComplete='off' onChange={e => {setTitle(e.target.value); e.target.value ? e.target.classList.add('notEmpty'): e.target.classList.remove('notEmpty')}}/>
                             <label htmlFor="titleInput">Title <span>*</span></label>
-                            <input type="date" id="startDateInput" value={startDate} autoComplete='off' onChange={e => setStartDate(e.target.value)}/>
+                            <input type="datetime-local" id="startDateInput" value={startDate} autoComplete='off' onChange={e => setStartDate(e.target.value)}/>
                             <label htmlFor="startDateInput">Start Date <span>*</span></label>
-                            <input type="date" id="deadlineDateInput" value={deadlineDate} autoComplete='off' onChange={e => setDeadlineDate(e.target.value)}/>
+                            <input type="datetime-local" id="deadlineDateInput" value={deadlineDate} autoComplete='off' onChange={e => setDeadlineDate(e.target.value)}/>
                             <label htmlFor="deadlineDateInput">Deadline <span>*</span></label>
                             <input type="text" id="descriptionInput" value={description} autoComplete='off' onChange={e => setDescription(e.target.value)}/>
                             <label htmlFor="descriptionInput">Description</label>
@@ -146,7 +146,7 @@ function App() {
                             <label htmlFor="submissionInput">Submission Link</label> */}\
                             <div 
                                 id="submitButton"
-                                onClick={() => console.log(title, startDate, deadlineDate, description)}
+                                onClick={() => console.log(title, new Date(startDate), new Date(deadlineDate), description)}
                             >Submit</div>
                         </div>
                     </div>

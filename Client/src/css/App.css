@@ -266,7 +266,7 @@ label span {
 }
 
 #startDateInput, #deadlineDateInput{
-    width: 12vh; height: 3vh;
+    width: 18vh; height: 3vh;
     position: absolute; top: 15vh;
 }
 
