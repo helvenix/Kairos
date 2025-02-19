@@ -80,8 +80,32 @@ function App() {
         setTimeout(() => setDisplayScreen(false), 300)
     }
 
-    function submitAssignment(title, start, deadline, description){
-        
+    async function submitAssignment(title, start, deadline, description){
+        const newAssignment = {
+            title: title,
+            start: new Date(start).toISOString(),
+            deadline: new Date(deadline).toISOString(),
+            description: description
+        }
+
+        try {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(newAssignment)
+            })
+            if (res.ok) {
+                setTimeout(() => alert("Assignment added successfully!"), 300)
+                setTitle(null);
+                setStartDate(null);
+                setDeadlineDate(null);
+                setDescription(null);
+            }
+        } catch(err){
+            console.error(err);
+        }
     }
 
     return (
@@ -160,7 +184,7 @@ function App() {
                                         setStartDate(null)
                                         setDeadlineDate(null)
                                     } else{
-                                        alert("Filled Required Data!");
+                                        setTimeout(()=> alert("Filled Required Data!"), 300)
                                     }                   
                                 }}
                             >

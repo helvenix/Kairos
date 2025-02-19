@@ -25,7 +25,20 @@ router.get('/:id', async (req, res) => {
 // POST
 router.post('/', async (req, res) => {
     try {
-        const newAssignment = new Assignment(req.body);
+        const assignments = await Assignment.find({}, {id: 1, _id:0}).sort({id:1})
+
+        let newId = 1;
+        for(const assignment of assignments){
+            if (assignment.id === newId){
+                newId++;
+            }else if(assignment.id > newId){
+                break;
+            }
+        }
+        const newAssignment = new Assignment({
+            id: newId,
+            ...req.body
+        });
         const savedAssignment = await newAssignment.save();
         res.status(201).json(savedAssignment);
     } catch (err) {
