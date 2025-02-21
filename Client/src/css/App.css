@@ -139,10 +139,11 @@
 }
 
 #inScreen {
-    width: 72vh; height: 100%; 
+    width: 72vh; height: 50%; 
     background-color: #242424;
-    position: fixed; top: 0; left: calc(50% - (72vh/2));
-    z-index: 2;
+    position: fixed; top: 50%; left: calc(50% - (72vh/2));
+    z-index: 2; transform: translateY(-50%);
+    border-radius: 24px;
 }
 
 #holdButton {
