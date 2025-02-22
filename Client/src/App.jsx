@@ -100,10 +100,10 @@ function App() {
                 const newAssignment = await res.json();
                 setAssignments(prev => [...prev, newAssignment]);
                 setTimeout(() => alert("Assignment added successfully!"), 300)
-                setTitle(null);
-                setStartDate(null);
-                setDeadlineDate(null);
-                setDescription(null);
+                setTitle("");
+                setStartDate("");
+                setDeadlineDate("");
+                setDescription("");
             }
         } catch(err){
             console.error(err);
