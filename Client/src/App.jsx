@@ -18,6 +18,19 @@ function formatTime(ms){
     return `${pad(days, 2)}:${pad(hours, 2)}:${pad(minutes, 2)}:${pad(seconds, 2)}`;
 }
 
+function formatDate(isoDate){
+    const dateObj = new Date(isoDate);
+    const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    };
+    return dateObj.toLocaleString('en-US', options);
+}
+
 function App() {
     const [access, setAccess] = useState(true)
     const [assignments, setAssignments] = useState([])
@@ -210,7 +223,7 @@ function App() {
                                     </div>
                                     <div className="progressLabel"></div>
                                 </div>
-                                <div className="due">due date: {assignment.deadline}</div>
+                                <div className="due">due date: {formatDate(assignment.deadline)}</div>
                                 <div 
                                     className="countdown"
                                     style={{
